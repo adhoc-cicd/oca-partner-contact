@@ -9,32 +9,37 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <field name="industry_id" position="after">
-                <field name="group_use_partner_industry_for_person" invisible="1" />
+                <field name="show_partner_industry_for_person" invisible="1" />
                 <field
                     name="secondary_industry_ids"
                     widget="many2many_tags"
-                    attrs="{'invisible': ['|', ('is_company', '=', False),
-                    ('group_use_partner_industry_for_person', '=', True)]}"
+                    attrs="{'invisible': [('is_company', '=', False),
+                    ('show_partner_industry_for_person', '=', False)]}"
                 />
+            </field>
+            <field name="industry_id" position="attributes">
+                <attribute name="attrs">
+                        {'invisible': [('is_company', '=', False), ('show_partner_industry_for_person', '=', False)]}
+                </attribute>
             </field>
             <xpath
                 expr="//field[@name='child_ids']/form//field[@name='title']"
                 position="after"
             >
                 <field name="is_company" invisible="1" />
-                <field name="group_use_partner_industry_for_person" invisible="1" />
+                <field name="show_partner_industry_for_person" invisible="1" />
                 <field
                     name="industry_id"
                     placeholder="Sector"
                     options='{"no_open": True}'
-                    attrs="{'invisible': ['|', ('is_company', '=', False),
-                    ('group_use_partner_industry_for_person', '=', True)]}"
+                    attrs="{'invisible': [('is_company', '=', False),
+                    ('show_partner_industry_for_person', '=', False)]}"
                 />
                 <field
                     name="secondary_industry_ids"
                     widget="many2many_tags"
-                    attrs="{'invisible': ['|', ('is_company', '=', False),
-                    ('group_use_partner_industry_for_person', '=', True)]}"
+                    attrs="{'invisible': [('is_company', '=', False),
+                    ('show_partner_industry_for_person', '=', False)]}"
                 />
             </xpath>
         </field>
@@ -47,10 +52,10 @@
             <field name="email" position="after">
                 <field
                     name="industry_id"
-                    attrs="{'invisible': ['|', ('is_company', '=', False),
-                    ('group_use_partner_industry_for_person', '=', True)]}"
+                    attrs="{'invisible': [('is_company', '=', False),
+                    ('show_partner_industry_for_person', '=', False)]}"
                 />
-                <field name="group_use_partner_industry_for_person" invisible="1" />
+                <field name="show_partner_industry_for_person" invisible="1" />
             </field>
         </field>
     </record>
